@@ -1,6 +1,5 @@
 package com.survivingcodingbootcamp.blog.controller;
 
-import com.survivingcodingbootcamp.blog.model.Post;
 import com.survivingcodingbootcamp.blog.model.Topic;
 import com.survivingcodingbootcamp.blog.repository.TopicRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,18 +18,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class TopicControllerTest {
 
     private TopicController underTest;
-    private TopicRepository topicRepo;
     private Model model;
     private Topic testTopic;
 
     @BeforeEach
     void setUp() {
-        topicRepo = mock(TopicRepository.class);
+        TopicRepository topicRepo = mock(TopicRepository.class);
         underTest = new TopicController(topicRepo);
         model = mock(Model.class);
         testTopic = new Topic("Test Topic");
         Optional<Topic> testOptional = Optional.of(testTopic);
-        when(topicRepo.findById(1l)).thenReturn(testOptional);
+        when(topicRepo.findById(1L)).thenReturn(testOptional);
 
     }
 

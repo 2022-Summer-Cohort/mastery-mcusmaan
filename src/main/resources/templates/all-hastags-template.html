@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>All Hashtags</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/layout.css"/>
 </head>
 <body>
-$END$
+<nav class="header__nav">
+  <div class="header__nav-item"><a href="/" class="header__nav-link">Home</a></div>
+  <div class="header__nav-item"><a href="/hashtags" class="header__nav-link">Hashtags</a></div>
+</nav>
+
+
+
+<section class="hashtags" id="all-hashtags">
+  <!--                <h1 class="all-hashtags-title" th:text="${filterName}">Hashtags</h1>-->
+  <div class="consoles">
+    <!-- all consoles -->
+    <a th:each="hashtag:${hashtags}" th:href="'/hashtag/'+${hashtag.id}" class="post__item">
+      <p class = "hashtag__item" th:text="${hashtag.hashTagM}" th:href="'/hashtag/'+${hashtag.id}"></p>
+    </a>
+  </div>
+</section>
+
 </body>
 </html>

@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="/css/layout.css" />
 </head>
 
-<body>
+class="header__nav">
+    <div class="header__nav-item"><a href="/" class="header__nav-link">Home</a></div>
+    <div class="header__nav-item"><a href="/hashtags" class="header__nav-link">Hashtags</a></div>
+
     <div class="container">
         <header class="header">
             <h1 class="header__title">Surviving Coding Boot Camp</h1>
@@ -24,13 +27,21 @@
                 <h3 class="post__topic-title main-content__topic-title"><a th:text="${post.topic.name}" th:href="'/topics/'+${post.topic.id}" class="main-content__topic-link post__topic-link">Topic</a>
                     </h3>
                 <h2 th:text="${post.title}" class="post__title main-content__topic-title">Post Title</h2>
-                <p th:text="${post.content}" class="post__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis, aut quae fuga id quis ut. 
+                <p th:text="${post.content}" class="post__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis, aut quae fuga id quis ut.
                     Eligendi necessitatibus blanditiis officia, odio deleniti natus molestiae fugiat ex quod vel aliquam illum.
                 </p>
+                <h2>Tags:</h2>
+                <div class="hashContainer" th:each = "hashtag: ${post.hashtags}">
+                    <a th:text= "${hashtag.hashTagM}" th:href="'/hashtag/'+${hashtag.id}">Hashtags</a>
+                </div>
             </section>
+            <form class = "formContainer2" action= "hashtag" th:action="'/post/' + ${post.id} + '/addHashtag'" method="POST">
+                <h2>Submit #Hashtag</h2>
+                <textarea class = "inputBorder" id="hashtag" name="hashtag" placeholder="Leave a #hashtag..." maxlength = "30" size = "50"></textarea>
+                <input class = "submitBorder" value="Submit Hashtag" type="submit">
+            </form>
         </main>
     </div>
 
-</body>
 
 </html>
