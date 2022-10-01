@@ -29,6 +29,12 @@
                     <a th:text="${post.title}" th:href="'/posts/'+${post.id}" href="#"
                        class="posts__nav-link"></a>
                 </div>
+                <form class="Form" th:action="'/topics/' + ${topic.id}+ '/addPost'" method="post">
+                    <input placeholder="author" type="text" name="author">
+                    <input placeholder="title" type="text" name="title"><br>
+                    <textarea placeholder="content" type="text" name="content" rows = "2" cols= "40"></textarea>
+                    <input type ="Submit" value = "Submit">
+                </form>
             </nav>
         </section>
     </main>
