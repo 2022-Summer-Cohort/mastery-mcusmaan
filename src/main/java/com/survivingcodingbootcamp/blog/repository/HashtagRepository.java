@@ -11,5 +11,5 @@ public interface HashtagRepository extends CrudRepository<Hashtag, Long> {
     Optional<Hashtag> findByHashTagMIgnoreCase(String hashTagM);
 
 
-
+    Optional<Hashtag> findByNameIgnoreCase(String hashtag);
 }

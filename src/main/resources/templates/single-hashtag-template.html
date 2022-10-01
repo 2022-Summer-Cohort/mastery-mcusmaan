@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+>
 <head>
     <meta charset="UTF-8">
-    <title>SingleHashTag</title>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <link rel="stylesheet" href="/css/layout.css"/>
+    <title th:text="${hashtag.name}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/assets/icon.png">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
 </head>
+
 <body>
-<nav class="header__nav">
-    <div class="header__nav-item"><a href="/" class="header__nav-link">Home</a></div>
-    <div class="header__nav-item"><a href="/hashtags" class="header__nav-link">Hashtags</a></div>
-</nav>
-<section class = "hashTagMDisplay">
-    <div class="container" th:each = "post: ${hashtag.posts}">
-        <a class = "postName" th:text= "${post.title} " th:href="'/posts/'+${post.id}"></a>
-    </div>
-</section>
+<div class="container">
+
+    <main>
+        <h2 class="display-3" th:text="${hashtag.name}">#Dev</h2>
+        <section class="logogrid">
+            <ul>
+                <li th:each="post:${hashtag.posts}">
+
+                    <a th:href="'/posts/'+${post.id}" th:text="${post.title}">
+
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+</div>
 
 </body>
 </html>

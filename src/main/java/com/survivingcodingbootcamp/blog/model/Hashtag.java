@@ -4,39 +4,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-
 @Entity
 public class Hashtag {
     @Id
     @GeneratedValue
     private long id;
-    public String hashTagM;
-
-    @ManyToMany
+    private String name;
+    @ManyToMany(mappedBy = "hashtags")
     private Collection<Post> posts;
 
-    public Hashtag(String hashTagM, Post... posts) {
-        this.hashTagM = hashTagM;
-        this.posts = new ArrayList<>();
 
+
+    public Hashtag(String name, Post... posts) {
+        this.name = name;
+        this.posts = Arrays.asList(posts);
     }
 
-    private Hashtag(){
-
-    }
 
     public long getId() {
         return id;
     }
 
-    public void addPost(Post post){
-        posts.add(post);
+    public String getName() {
+        return name;
     }
+    public Hashtag(){
 
-    public String getHashTagM() {
-        return hashTagM;
     }
+    public Collection<Post> getPosts() {return posts;}
+
 
 }
+

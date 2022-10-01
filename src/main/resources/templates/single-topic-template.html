@@ -11,10 +11,6 @@
 </head>
 
 <body>
-<nav class="header__nav">
-    <div class="header__nav-item"><a href="/" class="header__nav-link">Home</a></div>
-    <div class="header__nav-item"><a href="/hashtags" class="header__nav-link">Hashtags</a></div>
-</nav>
 <div class="container">
     <header class="header">
         <h1 class="header__title">Surviving Coding Boot Camp</h1>
@@ -33,15 +29,11 @@
                     <a th:text="${post.title}" th:href="'/posts/'+${post.id}" href="#"
                        class="posts__nav-link"></a>
                 </div>
-                <form class="post__form" th:action="'/topics/' + ${topic.id} + '/addPost'" method="POST">
-                    <h3>Add a Post</h3>
-                    <input class="post__submit" name="title" placeholder="Post title..." type="text">
-                    <input class="post__submit" name="author" placeholder="Post author..." type="text">
-                    <div class="bottom__box">
-                        <textarea class="post__submit" name="content" placeholder="Post content..." rows="5" cols="120"
-                                  maxlength="600"></textarea>
-                        <input class="post__submit" type="submit">
-                    </div>
+                <form class="Form" th:action="'/topics/' + ${topic.id}+ '/addPost'" method="post">
+                    <input placeholder="author" type="text" name="author">
+                    <input placeholder="title" type="text" name="title"><br>
+                    <textarea placeholder="content" type="text" name="content" rows = "2" cols= "40"></textarea>
+                    <input type ="Submit" value = "Submit">
                 </form>
             </nav>
         </section>

@@ -1,15 +1,9 @@
 package com.survivingcodingbootcamp.blog.model;
-
-import org.hibernate.mapping.Array;
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.Arrays;
 import java.util.Collection;
-
 @Entity
 public class Topic {
     @Id
@@ -18,30 +12,20 @@ public class Topic {
     private String name;
     @OneToMany(mappedBy = "topic")
     private Collection<Post> posts;
-
-    protected Topic(String name, Post...posts) {
-        this.name = name;
-        this.posts = Arrays.asList(posts);
+    protected Topic() {
     }
-
-    public Topic(){}
-
     public Topic(String name) {
         this.name = name;
     }
-
     public Long getId() {
         return id;
     }
-
     public String getName() {
         return name;
     }
-
     public Collection<Post> getPosts() {
         return posts;
     }
-
     @Override
     public String toString() {
         return "Topic{" +
@@ -49,22 +33,21 @@ public class Topic {
                 ", name='" + name + '\'' +
                 '}';
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Topic topic = (Topic) o;
-
         if (id != null ? !id.equals(topic.id) : topic.id != null) return false;
         return name != null ? name.equals(topic.name) : topic.name == null;
     }
-
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+    public void addPost(Post post){
+        posts.add(post);
     }
 }

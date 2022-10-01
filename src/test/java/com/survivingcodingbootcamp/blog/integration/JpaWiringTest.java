@@ -1,17 +1,13 @@
-package com.survivingcodingbootcamp.blog.integration;
-
 import com.survivingcodingbootcamp.blog.model.Post;
 import com.survivingcodingbootcamp.blog.model.Topic;
 import com.survivingcodingbootcamp.blog.repository.PostRepository;
 import com.survivingcodingbootcamp.blog.repository.TopicRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest
 public class JpaWiringTest {
     @Autowired
     private TopicRepository topicRepo;

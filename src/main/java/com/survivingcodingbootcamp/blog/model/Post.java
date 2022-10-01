@@ -1,8 +1,8 @@
 package com.survivingcodingbootcamp.blog.model;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collection;
-
 
 @Entity
 public class Post {
@@ -10,26 +10,29 @@ public class Post {
     @GeneratedValue
     private Long id;
     private String title;
-    private String author;
     @ManyToOne
     private Topic topic;
-
-    @ManyToMany(mappedBy = "posts")
-    private Collection<Hashtag> hashtags;
-
     @Lob
     private String content;
+    @Lob
+    private String author;
+    @ManyToMany
+    private Collection<Hashtag> hashtags;
+
 
     protected Post() {
     }
 
-    public Post(String title, Topic topic, String content) {
+    public Post(String title, Topic topic,String author, String content, Hashtag... hashtags) {
         this.title = title;
         this.topic = topic;
         this.content = content;
+        this.hashtags = Arrays.asList(hashtags);
+        this.author = author;
     }
 
-    public Post(String title, Topic topic, String content, String author) {
+    public Post(String title, Topic testTopic, String content) {
+
     }
 
     public Collection<Hashtag> getHashtags() {
@@ -48,14 +51,10 @@ public class Post {
         return topic;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-
     public String getContent() {
         return content;
     }
+    public String getAuthor() { return author;}
 
     @Override
     public String toString() {
@@ -83,12 +82,17 @@ public class Post {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 25 * result + (title != null ? title.hashCode() : 0);
-        result = 25 * result + (topic != null ? topic.hashCode() : 0);
-        result = 25 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (topic != null ? topic.hashCode() : 0);
+        result = 31 * result + (content != null ? content.hashCode() : 0);
         return result;
     }
-        public void addTopic(Topic topic) {
+    public void addHashtag(Hashtag hashtag){
+        hashtags.add(hashtag);
+    }
 
-        }
+    public void addTopic(Topic topic) {
+    }
 }
+
+

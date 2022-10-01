@@ -4,49 +4,63 @@ import com.survivingcodingbootcamp.blog.model.Hashtag;
 import com.survivingcodingbootcamp.blog.model.Post;
 import com.survivingcodingbootcamp.blog.repository.HashtagRepository;
 import com.survivingcodingbootcamp.blog.repository.PostRepository;
-import com.survivingcodingbootcamp.blog.repository.TopicRepository;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
+
+@Controller
+@RequestMapping("/")
 public class HashtagController {
-    private final PostRepository postRepo;
-    private final HashtagRepository hashtagRepo;
+    private HashtagRepository hashtagRepo;
+    private PostRepository postRepo;
 
-    public HashtagController(PostRepository postRepo, TopicRepository topicRepo, HashtagRepository hashtagRepo) {
-        this.postRepo = postRepo;
+    public HashtagController(HashtagRepository hashtagRepo,PostRepository postRepo) {
         this.hashtagRepo = hashtagRepo;
+        this.postRepo=postRepo;
     }
 
-    @GetMapping("/hashtags")
-    public String showHashtagsTemplate(Model model) {
+    @RequestMapping("/hashtags")
+    public String displayHashtags(Model model) {
         model.addAttribute("hashtags", hashtagRepo.findAll());
-        model.addAttribute("filterName", "All Hashtags");
         return "all-hashtags-template";
+
     }
 
-    @RequestMapping("/hashtag/{id}")
-    public String showHashtagTemplate(@PathVariable long id, Model model) {
+    @RequestMapping("/hashtags/{id}")
+    public String displayHashtagById(Model model, @PathVariable long id) {
         model.addAttribute("hashtag", hashtagRepo.findById(id).get());
         return "single-hashtag-template";
     }
 
     @PostMapping("/post/{id}/addHashtag")
-    public String addHashtagToConsole(@PathVariable long id, @RequestParam String hashtag) {
-        Optional<Post> tempPost = postRepo.findById(id);
-        Optional<Hashtag> hashtagToAdd = hashtagRepo.findByHashTagMIgnoreCase(hashtag);
-        if (tempPost.isPresent()) {
-            Hashtag tempHashtag;
-            if (hashtagToAdd.isPresent()) {
-                tempHashtag = hashtagToAdd.get();
-            } else {
-                tempHashtag = new Hashtag(hashtag);
+    public String addHashtagToPost(@PathVariable long id, @RequestParam String hashtag) {
+        Post post = postRepo.findById(id).get();
+        Optional<Hashtag> hashtagOptional =  hashtagRepo.findByNameIgnoreCase(hashtag);
+
+        if (hashtagOptional.isPresent()) {
+            if (!post.getHashtags().contains(hashtagOptional.get())) {
+                post.addHashtag(hashtagOptional.get());
             }
-            tempHashtag.addPost(tempPost.get());
-            hashtagRepo.save(tempHashtag);
         }
+        else {
+            Hashtag hashtag1 = new Hashtag(hashtag);
+            hashtagRepo.save(hashtag1);
+            post.addHashtag(hashtag1);
+
+        }
+        postRepo.save(post);
         return "redirect:/posts/" + id;
+
     }
+
 }
+
 
