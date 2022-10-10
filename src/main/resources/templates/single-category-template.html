@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${topic.name}">Document</title>
+
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/layout.css"/>
+</head>
+
+<body>
+<div class="container">
+    <header class="header">
+        <h1 class="header__title">Surviving Coding Boot Camp</h1>
+        <nav class="header__nav">
+            <div class="header__nav-item"><a href="/" class="header__nav-link">Home</a></div>
+            <div class="header__nav-item"><a href="/hashtags/" class="header__nav-link">Hashtags</a></div>
+        </nav>
+    </header>
+    <main class="main-content">
+        <section class="main-content__topic topic">
+            <h2 th:text="${topic.name}" class="topic__title main-content__title">
+                Topic
+            </h2>
+
+
+            <form action="#" th:action="@{/posts/create}" th:object="${post}" method="post">
+            <div class="wrapper">
+                <h4 class="info">Create New Post </h4>
+
+                    <input type="number" hidden  th:field="${post.topicId}" />
+                    <input type="text" hidden th:field="${post.topicName}"  />
+                    <input type="text"  th:field="${post.title}" placeholder="post title"/>
+                    <textarea th:field="${post.content}"  placeholder="post content"/>
+                    <input type="text"  th:field="${post.author}"  placeholder="Author"/>
+                    <button class="button" type="submit">Create Post</button>
+
+            </div>
+            </form>
+
+        </section>
+    </main>
+</div>
+</body>
+
+</html>

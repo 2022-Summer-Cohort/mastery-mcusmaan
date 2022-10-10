@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Montserrat&display=swap');
+
+:root{
+    --dark-background: #2F3E46;
+    --text: #cad2c5;
+    --light-highlight: #84A98C;
+    --dark-highlight: #52796f;
+    --light-background:#354f52;
+}
+
+h1{
+    font-family: 'Inconsolata', monospace;
+    font-size: 40px;
+}
+h2{
+    color:var(--light-highlight)
+}
+.container{
+    background-color: var(--light-background);
+}
+html{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    background-color: var(--dark-background);
+    color: var(--text);
+}
+.header{
+    background-color: var(--light-background);
+    color: var(--light-highlight);
+}
+.header__nav-link{
+    font-size: 18px;
+    color: var(--dark-highlight);
+}
+.header__nav-link:hover{
+    color: var(--light-highlight);
+}
+
+a{
+    color: var(--dark-highlight); 
+}
+a:hover{
+    color: var(--light-highlight);
+}
+
+
+
+.wrapper {
+  padding: 20px 28px;
+  margin: 10px 5px; 10px 10px;
+  width: 580px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  border: solid 2px white;
+}
+
+h3 {
+  margin: 10px 14px 10px 0;
+  font-weight: 300;
+  font-size: 36px;
+}
+
+p {
+  margin: 10px 10px;
+  font-weight: 300;
+  font-size: 14px;
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+
+input {
+  border: none;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 8px;
+  width: 100%;
+  color: #666;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  outline: none;
+}
+
+textarea {
+  border: none;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 8px;
+  width: 100%;
+  color: #666;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  outline: none;
+}
+
+.tag-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.tag{
+  pointer-events: cursor;
+  background-color: #242424;
+  color: white;
+  padding: 6px;
+  margin: 5px;
+}
+
+.tag::before {
+  pointer-events: all;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin-right: 6px;
+  text-align: center;
+  color: #ccc;
+  background-color: #111;
+  cursor: pointer;
+}
+
+
+.button {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50; /* Green */
+  float:right;
+  width:100px;
+  height:50px;
+
+}
