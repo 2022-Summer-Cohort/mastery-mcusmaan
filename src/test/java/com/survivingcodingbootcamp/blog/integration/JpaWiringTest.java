@@ -25,6 +25,7 @@ public class JpaWiringTest {
     private TestEntityManager entityManager;
 
     @Test
+
     public void postsShouldHaveATopic() {
         Topic testTopic = new Topic("Name");
         topicRepo.save(testTopic);
